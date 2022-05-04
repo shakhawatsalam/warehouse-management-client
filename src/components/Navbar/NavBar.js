@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Banner from '../Banner/Banner';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -30,7 +29,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </nav>
-            <Banner></Banner>
+            
         </div>
     );
 };
