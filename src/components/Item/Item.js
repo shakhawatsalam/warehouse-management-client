@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Item = ({ item }) => {
@@ -8,7 +8,7 @@ const Item = ({ item }) => {
     const navigateToItems = id => {
         navigate(`/inventory/${id}`)
     }
-    
+
     return (
 
         <div className="col-12 col-md-6 col-lg-4">
