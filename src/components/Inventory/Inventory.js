@@ -4,10 +4,8 @@ import './Inventory.css';
 
 const Inventory = () => {
     const { id } = useParams();
-    const [data, setData] = useState({});
-    // console.log(data);
+    const [data, setData] = useState({quantity:''});
 
-    // console.log(id);
 
     useEffect(() => {
         const url = `http://localhost:5000/items/${id}`
@@ -16,9 +14,26 @@ const Inventory = () => {
             .then(data => setData(data));
         // console.log(data);
     }, []);
-    const handleDeliverButton = (quantity) => {
-        const oldQuantity = parseInt(quantity);
-        console.log(typeof(oldQuantity ));
+    const number = parseInt(data.quantity);
+    const { quantity, ...rest } = data;
+    const handleDeliverButton = (event) => {
+        // event.preventDefault();
+        const newQuantity = number - 1;
+        const data = {
+            quantity : newQuantity
+        }
+        const url = `http://localhost:5000/items/${id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setData({ quantity: newQuantity, ...rest });
+        })
     }
     return (
         <div className='container'>
@@ -32,7 +47,10 @@ const Inventory = () => {
                     <h4>Price: {data.price}</h4>
                     <h4>Quantity: {data.quantity}</h4>
                     <h4>Quantity: {data.supplier_name}</h4>
-                    <button onClick={() => handleDeliverButton(data.quantity)} className='btn btn-secondary mt-'>Delivered</button>
+                    {data.quantity > 0 ?
+                        <button onClick={handleDeliverButton} className='btn btn-secondary mt-'>Delivered</button> :
+                        <button onClick={handleDeliverButton} className='btn btn-danger mt-' disabled>Stock Out</button>
+                    }
                 </div>
             </div>
 
