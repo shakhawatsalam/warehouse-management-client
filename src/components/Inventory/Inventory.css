@@ -1,0 +1,23 @@
+.inventory-details{
+    background-color: oldlace;
+    height: 400px;
+    position: absolute;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 20px;
+}
+.img img{
+    width: 300px;
+    border: 1px solid black;
+    height: 300px;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom:0px;
+}
+.details{
+    margin-left: 20px;
+    height: 300px;
+    border-radius: 20px;
+    border: 1px solid black;
+    padding: 5px;
+}
