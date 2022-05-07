@@ -1,8 +1,21 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 import './NavBar.css';
 
 const NavBar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const navigate = useNavigate();
+
+
+    // sing out 
+    const singOut = () => {
+        signOut(auth);
+        navigate('/');
+
+    };
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,13 +36,17 @@ const NavBar = () => {
                                 <Link className="nav-link" to="/">Pricing</Link>
                             </li>
                         </ul>
-                        <span className="navbar-text">
-                            Manage Your Shop Inventory
-                        </span>
+                        {user ?
+                            <span onClick={singOut} className="navbar-text text-danger fw-bolder">
+                                Sing Out
+                            </span> :
+                            <span className="navbar-text text-danger fw-bolder">
+                                <Link className='text-danger fw-bolder text-decoration-none' to='/login'>Sing IN</Link>
+                            </span>}
                     </div>
                 </div>
             </nav>
-            
+
         </div>
     );
 };

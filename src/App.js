@@ -4,7 +4,10 @@ import NavBar from "./components/Navbar/NavBar";
 import Inventory from "./components/Inventory/Inventory";
 import ManageInventories from "./components/ManageInventories/ManageInventories";
 import Register from "./components/Register/Register";
+import 'react-toastify/dist/ReactToastify.css';
 import Login from "./components/Login/Login";
+
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -18,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/inventory/:id" element={<Inventory></Inventory>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </>
   );
 }
