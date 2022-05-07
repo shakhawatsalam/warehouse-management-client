@@ -30,7 +30,8 @@ const AddNewItem = () => {
             .then(res => res.json())
             .then(result => {
                 console.log(result);
-            })
+            });
+        event.target.reset('')
     }
     return (
         <div>
