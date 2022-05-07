@@ -37,7 +37,7 @@ const AddNewItem = () => {
             <div className='d-flex justify-content-center items-center w-50 mx-auto p-5 mt-5 my-class shadow-lg'>
                 <div className='register w-100'>
                     <form onSubmit={handleAddItems}>
-                        <h1 className='text-center'><span>Please</span> Login</h1>
+                        <h1 className='text-center'><span>Add</span> New Items</h1>
                         <label className='fs-3' htmlFor="email">Name</label>
                         <input className='d-block p-2 w-100 mb-3' type="name" name="name" id="" placeholder='name' required />
                         <label className='fs-3' htmlFor="price">Price</label>
