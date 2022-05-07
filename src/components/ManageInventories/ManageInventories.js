@@ -7,7 +7,7 @@ const ManageInventories = () => {
         fetch('http://localhost:5000/items')
             .then(res => res.json())
             .then(data => setItems(data))
-        
+
     }, [])
     return (
         <div>
@@ -24,7 +24,7 @@ const ManageInventories = () => {
                 <tbody>
                     {
                         items?.map(item => <tr key={item._id}>
-                            
+
                             <td>{item.name}</td>
                             <td>{item.price}</td>
                             <td>{item.quantity}</td>
