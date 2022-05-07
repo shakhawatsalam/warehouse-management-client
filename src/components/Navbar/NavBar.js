@@ -3,6 +3,7 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 import './NavBar.css';
 
 const NavBar = () => {
@@ -16,6 +17,9 @@ const NavBar = () => {
         navigate('/');
 
     };
+    if (loading) {
+        return <Loading></Loading>
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,7 +41,7 @@ const NavBar = () => {
                             </li>
                         </ul>
                         {user ?
-                            <span onClick={singOut} className="navbar-text text-danger fw-bolder">
+                            <span onClick={singOut} className="navbar-text text-danger fw-bolder cursor">
                                 Sing Out
                             </span> :
                             <span className="navbar-text text-danger fw-bolder">
