@@ -21,7 +21,8 @@ const Login = () => {
     const [sendPasswordResetEmail, sending, ResetError] = useSendPasswordResetEmail(
         auth
     );
-    let from = location.state?.form?.pathname || "/";
+    let from = location.state?.from?.pathname || "/";
+    console.log(from);
     let errorElement;
     if (error || googlError) {
         errorElement = <p className='text-danger'>Error : {error?.message} {googlError?.message}</p>
@@ -39,7 +40,10 @@ const Login = () => {
 
         signInWithEmailAndPassword(email, password);
     }
-    if (user || googleuser) {
+    if (googleuser) {
+        navigate(from, { replace: true })
+    }
+    if (user) {
         navigate(from, { replace: true });
     }
     // google sing in
@@ -70,8 +74,8 @@ const Login = () => {
                         <input className='d-block p-2 w-100 mb-3' type="email" name="email" id="" placeholder='Your email' required />
                         <label className='fs-3' htmlFor="password">Password</label>
                         <input className='d-block p-2 w-100' type="password" name="password" id="" placeholder='password' required />
-                        <p className='mt-2'>Please Register<Link to='/register'> <span>Register</span></Link></p>
-                        <p className='mt-2'><Link to='' onClick={forgotPassword}> <span>forgot Password</span></Link></p>
+                        <p className='mt-2 '>Please Register<Link className='text-decoration-none' to='/register'> <span>Register</span></Link></p>
+                        <p className='mt-2'><Link className='text-decoration-none' to='' onClick={forgotPassword}> <span>forgot Password</span></Link></p>
                         {errorElement}
                         <input className='btn btn-danger mt-2 shadow' type="submit" value="Login" />
                         <button onClick={() => googleSingin()} className='d-block btn mt-2 border w-50 mx-auto'><img src={google} alt="" /> Singin with Google</button>

@@ -6,7 +6,7 @@ import ManageInventories from "./components/ManageInventories/ManageInventories"
 import Register from "./components/Register/Register";
 import 'react-toastify/dist/ReactToastify.css';
 import Login from "./components/Login/Login";
-
+import RequireAuth from './components/RequireAuth/RequireAuth';
 import { ToastContainer } from "react-toastify";
 
 function App() {
@@ -16,7 +16,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path="/manageInventories" element={<ManageInventories></ManageInventories>}></Route>
+        <Route path="/manageInventories" element={
+          <RequireAuth>
+
+            <ManageInventories></ManageInventories>
+          </RequireAuth>
+        }></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/inventory/:id" element={<Inventory></Inventory>}></Route>
