@@ -14,6 +14,23 @@ const ManageInventories = () => {
     const navagateToAddItems = () => {
         navigate('/addNewItem')
     }
+    //Delete Handler
+    const deleteHandler = id => {
+       
+        const proceed = window.confirm('Do you Want to Delete');
+        if (proceed) {
+            const url = `http://localhost:5000/items/${id}`;
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remaning = items?.filter(items => items?._id !== id);
+                    setItems(remaning);
+            })
+        }
+    }
     return (
         <div>
             <h1 className='text-center mt-5'><span>Manage</span> inventories</h1>
@@ -38,7 +55,7 @@ const ManageInventories = () => {
                             <td>{item.name}</td>
                             <td>${item.price}</td>
                             <td>{item.quantity}</td>
-                            <td><button className='btn btn-danger'>delete</button></td>
+                            <td><button onClick={() => deleteHandler(item._id)} className='btn btn-danger'>delete</button></td>
                         </tr>
                         )
                     }
