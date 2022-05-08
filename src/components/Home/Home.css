@@ -1,0 +1,24 @@
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 576px) {
+    .header{
+        display: block;
+        
+    }
+    .title-section{
+        order: 2;
+        width: 250px;
+        
+    }
+    .img-section img{
+       
+        height: 50vh;
+        width: 300px;
+        /* border: 1px solid red; */
+    }
+
+    
+}

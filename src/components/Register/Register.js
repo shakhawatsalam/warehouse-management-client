@@ -54,7 +54,7 @@ const Register = () => {
     }
     return (
         <div className='height'>
-            <div className='d-flex justify-content-center items-center w-50 mx-auto p-5 mt-5 my-class shadow-lg'>
+            <div className='d-flex  p-5 mt-5 my-class shadow-lg'>
                 <div className='register w-100'>
                     <form onSubmit={handleSubmitFrom}>
                         <h1 className='text-center'><span>Please</span> Register</h1>
@@ -72,7 +72,8 @@ const Register = () => {
 
 
 
-            </div></div>
+            </div>
+        </div>
     );
 };
 

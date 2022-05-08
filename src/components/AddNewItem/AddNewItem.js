@@ -37,7 +37,7 @@ const AddNewItem = () => {
     }
     return (
         <div>
-            <div className='d-flex justify-content-center items-center w-50 mx-auto p-5 mt-5 my-class shadow-lg'>
+            <div className='d-flex p-5 mt-5 my-class shadow-lg'>
                 <div className='register w-100'>
                     <form onSubmit={handleAddItems}>
                         <h1 className='text-center'><span>Add</span> New Items</h1>
