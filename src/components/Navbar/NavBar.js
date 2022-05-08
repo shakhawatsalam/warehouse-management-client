@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading';
 import './NavBar.css';
 
 const NavBar = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const navigate = useNavigate();
 
 

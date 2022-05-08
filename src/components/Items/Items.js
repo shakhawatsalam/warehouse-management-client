@@ -6,7 +6,7 @@ const Items = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('https://blooming-brook-94893.herokuapp.com/items')
             .then(res => res.json())
             .then(data => setItems(data));
     }, []);
@@ -16,11 +16,11 @@ const Items = () => {
 
             <div className="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-5">
                 {
-                    items?.slice(0,6).map(item => <Item
-                    
+                    items?.slice(0, 6).map(item => <Item
+
                         item={item}
-                        key = {item._id}
-                    
+                        key={item._id}
+
                     ></Item>)
                 }
             </div>

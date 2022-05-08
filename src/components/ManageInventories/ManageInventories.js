@@ -6,7 +6,7 @@ const ManageInventories = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/items')
+        fetch('https://blooming-brook-94893.herokuapp.com/items')
             .then(res => res.json())
             .then(data => setItems(data))
 
@@ -16,10 +16,10 @@ const ManageInventories = () => {
     }
     //Delete Handler
     const deleteHandler = id => {
-       
+
         const proceed = window.confirm('Do you Want to Delete');
         if (proceed) {
-            const url = `http://localhost:5000/items/${id}`;
+            const url = `https://blooming-brook-94893.herokuapp.com/items/${id}`;
             fetch(url, {
                 method: 'DELETE',
             })
@@ -28,7 +28,7 @@ const ManageInventories = () => {
 
                     const remaning = items?.filter(items => items?._id !== id);
                     setItems(remaning);
-            })
+                })
         }
     }
     return (

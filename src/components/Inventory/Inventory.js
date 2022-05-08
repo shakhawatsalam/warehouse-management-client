@@ -8,11 +8,11 @@ const Inventory = () => {
 
 
     useEffect(() => {
-        const url = `http://localhost:5000/items/${id}`
+        const url = `https://blooming-brook-94893.herokuapp.com/items/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setData(data));
-    }, []);
+    }, [id]);
     //DELIVER BUTTON 
     const number = parseInt(data.quantity);
     const { quantity, ...rest } = data;
@@ -21,7 +21,7 @@ const Inventory = () => {
         const data = {
             quantity: newQuantity
         }
-        const url = `http://localhost:5000/items/${id}`
+        const url = `https://blooming-brook-94893.herokuapp.com/items/${id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -44,7 +44,7 @@ const Inventory = () => {
         if (!isNaN(inputNumber)) {
             const quantity = inputNumber + oldQuantity;
             const data = { quantity };
-            const url = `http://localhost:5000/items/${id}`
+            const url = `https://blooming-brook-94893.herokuapp.com/items/${id}`
             fetch(url, {
                 method: "PUT",
                 headers: {

@@ -1,4 +1,4 @@
-import { EmailAuthCredential, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const email = user?.email;
-        const url = `http://localhost:5000/myitems?email=${email}`
+        const url = `https://blooming-brook-94893.herokuapp.com/myitems?email=${email}`
         try {
             fetch(url, {
                 method: 'GET',
@@ -24,7 +24,7 @@ const MyItems = () => {
                 .then(data => {
                     if (data?.length) {
                         setItems(data);
-                    } else if(data.error) {
+                    } else if (data.error) {
                         signOut(auth);
                         navigate('/login');
                     }
@@ -33,28 +33,28 @@ const MyItems = () => {
         catch (error) {
             // console.log(error);
             // if (error.response.status === 401 || error.response.status === 403) {
-               
+
             // }
         }
-        
-    }, [user]);
 
-        //Delete Handler
-        const deleteHandler = id => {
-       
-            const proceed = window.confirm('Do you Want to Delete');
-            if (proceed) {
-                const url = `http://localhost:5000/items/${id}`;
-                fetch(url, {
-                    method: 'DELETE',
+    });
+
+    //Delete Handler
+    const deleteHandler = id => {
+
+        const proceed = window.confirm('Do you Want to Delete');
+        if (proceed) {
+            const url = `https://blooming-brook-94893.herokuapp.com/items/${id}`;
+            fetch(url, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    const remaning = items?.filter(items => items?._id !== id);
+                    setItems(remaning);
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        const remaning = items?.filter(items => items?._id !== id);
-                        setItems(remaning);
-                })
-            }
         }
+    }
     return (
         <div>
             <h1 className='text-center mt-5'><span>My</span> Items</h1>

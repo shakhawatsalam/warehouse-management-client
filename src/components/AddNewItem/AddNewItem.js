@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddNewItem = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
 
     // submiting from
@@ -20,7 +20,7 @@ const AddNewItem = () => {
             img: event.target.img.value
 
         }
-        const url = `http://localhost:5000/items`;
+        const url = `https://blooming-brook-94893.herokuapp.com/items`;
         fetch(url, {
             method: 'POST',
             headers: {

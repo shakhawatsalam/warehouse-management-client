@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import google from '../../Images/google.png'
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
@@ -9,7 +9,7 @@ import './Login.css';
 
 
 const Login = () => {
-    const [email, setEamil] = useState('');
+    const [email] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const [signInWithGoogle, googleuser, googleLoading, googlError] = useSignInWithGoogle(auth);
@@ -19,7 +19,7 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth, { updatePassword: false });
-    const [sendPasswordResetEmail, sending, ResetError] = useSendPasswordResetEmail(
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
         auth
     );
     let from = location.state?.from?.pathname || "/";
@@ -45,18 +45,18 @@ const Login = () => {
 
 
         await signInWithEmailAndPassword(email, password);
-        const url = `http://localhost:5000/login`;
+        const url = `https://blooming-brook-94893.herokuapp.com/login`;
         fetch(url, {
             method: 'POST',
             headers: {
                 'content-type': "application/json"
             },
-            body: JSON.stringify({email})
+            body: JSON.stringify({ email })
         })
             .then(res => res.json())
             .then(data => {
                 localStorage.setItem('accessToken', data.accessToken);
-                
+
             });
     }
     if (googleuser) {
@@ -66,12 +66,12 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     // google sing in
-     
-        
+
+
     const googleSingin = async () => {
         await signInWithGoogle();
-        // const url = `http://localhost:5000/login`;
-        
+        // const url = `https://blooming-brook-94893.herokuapp.com/login`;
+
         // fetch(url, {
         //     method: 'POST',
         //     headers: {
@@ -121,7 +121,7 @@ const Login = () => {
 
 
             </div>
-            
+
         </div>
     );
 };

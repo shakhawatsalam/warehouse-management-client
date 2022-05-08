@@ -1,6 +1,6 @@
 import React from 'react';
 import ExtraPartOne from '../ExtraPartOne/ExtraPartOne';
-import ExtraPartTwo from '../Item/ExtraPartTwo/ExtraPartTwo';
+import ExtraPartTwo from '../ExtraPartTwo/ExtraPartTwo';
 import Items from '../Items/Items';
 import './Home.css'
 

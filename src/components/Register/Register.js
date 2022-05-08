@@ -12,7 +12,7 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
-    const [sendEmailVerification, sending, SendEmailError] = useSendEmailVerification(
+    const [sendEmailVerification] = useSendEmailVerification(
         auth
     );
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Register = () => {
 
         await sendEmailVerification(email);
         await createUserWithEmailAndPassword(email, password);
-        const url = `http://localhost:5000/login`;
+        const url = `https://blooming-brook-94893.herokuapp.com/login`;
         fetch(url, {
             method: 'POST',
             headers: {

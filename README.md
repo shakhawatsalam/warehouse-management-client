@@ -1,11 +1,12 @@
-# Live site Link : [PC Build Bangladesh](https://independent-service-prov-2654f.web.app/).
+# Live site Link : [PC Build Bangladesh](https://inventory-management-accca.web.app/).
 
 - ## This is PC Build Shop Inventory Web Page.
 - ## Home page Extra part is address and Contact Us From.
 - ## Only LogIN person can see and visit Manage Items, Add Items, My Items route.
 - ## Inventory has 6 services.
 - ## Only mobile Responsive is done.
-# technologies  used : 
+
+# technologies used :
 
 - # React router dom
 - # Bootstrap 5
