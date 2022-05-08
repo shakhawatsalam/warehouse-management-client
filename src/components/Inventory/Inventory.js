@@ -72,7 +72,7 @@ const Inventory = () => {
                     <div className='details'>
                         <h3>Name : {data?.name}</h3>
                         <p>{data?.description}</p>
-                        <h4>Price: {data?.price}</h4>
+                        <h4>Price: ${data?.price}</h4>
                         <h4>Quantity: {data?.quantity}</h4>
                         <h4>Quantity: {data?.supplier_name}</h4>
                         {data.quantity > 0 ?

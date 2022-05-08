@@ -27,7 +27,12 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/addNewItem" element={<AddNewItem></AddNewItem>}></Route>
-        <Route path="/myItems" element={<MyItems></MyItems>}></Route>
+        <Route path="/myItems" element={
+          <RequireAuth>
+
+            <MyItems></MyItems>
+          </RequireAuth>
+        }></Route>
         <Route path="/inventory/:id" element={<Inventory></Inventory>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>

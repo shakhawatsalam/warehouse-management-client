@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Item = ({ item }) => {
-    const { name, img, _id, price, quantity, supplier_name
+    const { name, img, _id, description, price, quantity, supplier_name
     } = item;
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Item = ({ item }) => {
                     <h5>Supplier Name : {supplier_name
                     }</h5>
 
-                    <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p className="card-text">{description}</p>
                     <div className='d-flex justify-content-between'>
                         <button onClick={() => navigateToItems(_id)} className='btn btn-dark'>Update</button>
                         <button onClick={() => navigate('/manageInventories')} className='btn btn-danger'>Manage Inventories</button>

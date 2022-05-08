@@ -22,23 +22,42 @@ const Login = () => {
         auth
     );
     let from = location.state?.from?.pathname || "/";
-    console.log(from);
+    console.log(error);
+    console.log(googleuser?.user?.email);
     let errorElement;
-    if (error || googlError) {
+    if (error) {
         errorElement = <p className='text-danger'>Error : {error?.message} {googlError?.message}</p>
+
+    }
+    let googleerrorElement;
+    if (googlError) {
+        googleerrorElement = <p className='text-danger'>Error :  {googlError?.message}</p>
 
     }
     if (loading || googleLoading) {
         return <Loading></Loading>
     }
     //handle login from
-    const handleLoginFrom = event => {
+    const handleLoginFrom = async event => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
 
 
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        const url = `http://localhost:5000/login`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify({email})
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.accessToken);
+                
+            });
     }
     if (googleuser) {
         navigate(from, { replace: true })
@@ -47,10 +66,28 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     // google sing in
-    const googleSingin = () => {
-        signInWithGoogle();
+     
+        
+    const googleSingin = async () => {
+        await signInWithGoogle();
+        console.log(googleuser);
+        // const url = `http://localhost:5000/login`;
+        
+        // fetch(url, {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': "application/json"
+        //     },
+        //     body: JSON.stringify({email})
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         localStorage.setItem('accessToken', data.accessToken);
+        //         navigate(from, { replace: true });
+        //     });
 
     }
+
     //forgot password 
     const forgotPassword = async () => {
         console.log(ResetError);
@@ -77,6 +114,7 @@ const Login = () => {
                         <p className='mt-2 '>Please Register<Link className='text-decoration-none' to='/register'> <span>Register</span></Link></p>
                         <p className='mt-2'><Link className='text-decoration-none' to='' onClick={forgotPassword}> <span>forgot Password</span></Link></p>
                         {errorElement}
+                        {googleerrorElement}
                         <input className='btn btn-danger mt-2 shadow' type="submit" value="Login" />
                         <button onClick={() => googleSingin()} className='d-block btn mt-2 border w-50 mx-auto'><img src={google} alt="" /> Singin with Google</button>
                     </form>

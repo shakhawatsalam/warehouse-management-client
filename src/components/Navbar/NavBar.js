@@ -21,6 +21,7 @@ const NavBar = () => {
         return <Loading></Loading>
     }
     return (
+
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
@@ -33,12 +34,20 @@ const NavBar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link ms-2" to={'/addNewItem'}>Add New Items</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link ms-2" to={'/myItems'}>My Items</Link>
-                            </li>
+                            {user ?
+                                <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link ms-2" to={'/addNewItem'}>Add New Items</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link ms-2" to={'/myItems'}>My Items</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link ms-2" to={'/manageInventories'}>Manage Items</Link>
+                                    </li>
+                                </>
+                                : ''}
+
                         </ul>
                         {user ?
                             <span onClick={singOut} className="navbar-text text-danger fw-bolder cursor">
@@ -52,6 +61,7 @@ const NavBar = () => {
             </nav>
 
         </div>
+
     );
 };
 

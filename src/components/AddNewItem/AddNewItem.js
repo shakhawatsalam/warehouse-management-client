@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddNewItem = () => {
@@ -31,6 +32,7 @@ const AddNewItem = () => {
             .then(result => {
                 console.log(result);
             });
+        toast('Your Items is Added')
         event.target.reset('')
     }
     return (

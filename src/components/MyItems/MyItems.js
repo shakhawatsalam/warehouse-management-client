@@ -1,18 +1,43 @@
+import { EmailAuthCredential, signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
     const [items, setItems] = useState([]);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
         const email = user?.email;
+        console.log(email);
         const url = `http://localhost:5000/myitems?email=${email}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setItems(data))
+        try {
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data?.length) {
+                        setItems(data);
+                    } else if(data.error) {
+                        signOut(auth);
+                        navigate('/login');
+                    }
+                });
+        }
+        catch (error) {
+            // console.log(error);
+            // if (error.response.status === 401 || error.response.status === 403) {
+               
+            // }
+        }
         
     }, [user]);
 
@@ -51,11 +76,11 @@ const MyItems = () => {
                 </thead>
                 <tbody>
                     {
-                        items?.map(item => <tr key={item._id}>
+                        items?.map(item => <tr key={item?._id}>
 
-                            <td>{item.name}</td>
-                            <td>${item.price}</td>
-                            <td>{item.quantity}</td>
+                            <td>{item?.name}</td>
+                            <td>${item?.price}</td>
+                            <td>{item?.quantity}</td>
                             <td><button onClick={() => deleteHandler(item._id)} className='btn btn-danger'>delete</button></td>
                         </tr>
                         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import './Register.css';
@@ -15,16 +15,31 @@ const Register = () => {
     const [sendEmailVerification, sending, SendEmailError] = useSendEmailVerification(
         auth
     );
-    const navigate = useNavigate()
-    
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
 
-    const handleSubmitFrom = event => {
+
+    const handleSubmitFrom = async event => {
         event.preventDefault()
         const email = event.target.email.value;
         const password = event.target.password.value;
 
-        sendEmailVerification(email);
-        createUserWithEmailAndPassword(email, password);
+        await sendEmailVerification(email);
+        await createUserWithEmailAndPassword(email, password);
+        const url = `http://localhost:5000/login`;
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.accessToken);
+                navigate(from, { replace: true });
+            });
     }
     if (loading) {
         return <Loading></Loading>
@@ -52,10 +67,10 @@ const Register = () => {
                     {errorElement}
                     <input className='btn btn-danger mt-2 shadow' type="submit" value="Register" />
                 </form>
-           </div>
-            
+            </div>
 
-           
+
+
         </div>
     );
 };
