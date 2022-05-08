@@ -1,4 +1,5 @@
 import React from 'react';
+import ExtraPartOne from '../ExtraPartOne/ExtraPartOne';
 import Items from '../Items/Items';
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
 
             </div>
             <Items></Items>
+            <ExtraPartOne></ExtraPartOne>            
         </div>
     );
 };

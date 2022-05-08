@@ -33,11 +33,16 @@ const NavBar = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link active" aria-current="page" to="/blogs">Blogs</Link>
+
                             </li>
                             {user ?
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link ms-2" to={'/addNewItem'}>Add New Items</Link>
+                                        <Link className="nav-link ms-2" to={'/addNewItem'}>Add Items</Link>
                                     </li>
                                     <li className="nav-item">
                                         <Link className="nav-link ms-2" to={'/myItems'}>My Items</Link>

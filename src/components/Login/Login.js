@@ -5,6 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import google from '../../Images/google.png'
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
+import './Login.css';
 
 
 const Login = () => {
@@ -102,7 +103,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='height'>
             <div className='d-flex justify-content-center items-center w-50 mx-auto p-5 mt-5 my-class shadow-lg'>
                 <div className='register w-100'>
                     <form onSubmit={handleLoginFrom}>
