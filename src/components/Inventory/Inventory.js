@@ -12,7 +12,6 @@ const Inventory = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setData(data));
-        // console.log(data);
     }, []);
     //DELIVER BUTTON 
     const number = parseInt(data.quantity);
@@ -55,7 +54,6 @@ const Inventory = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('success', data);
                     setData({ quantity: quantity, ...rest });
                     event.target.reset('')
                 })
@@ -65,9 +63,11 @@ const Inventory = () => {
     return (
         <div>
             <div className='container'>
-                <div className='inventory-details d-flex justify-content-between align-items-center mt-5'>
-                    <div className='img'>
-                        <img src={data?.img} alt="" />
+                <div className='inventory-details mt-5'>
+                    <div className='img-container'>
+                        <div className='img'>
+                            <img src={data?.img} alt="" />
+                        </div>
                     </div>
                     <div className='details'>
                         <h3>Name : {data?.name}</h3>
@@ -82,13 +82,15 @@ const Inventory = () => {
 
                     </div>
                 </div>
+                <form onSubmit={handleStock} className='d-flex align-items-center mt-5 justify-content-center flex-column'>
+                    <label htmlFor="restock">Restock</label>
+                    <input className='' type="text" name="restock" id="" />
+                    <input className='mt-3 btn btn-primary' type="submit" value="Restock" />
+                </form>
+
 
             </div>
-            <form onSubmit={handleStock} className='d-flex align-items-center mt-5 justify-content-center flex-column'>
-                <label htmlFor="restock">Restock</label>
-                <input className='' type="text" name="restock" id="" />
-                <input className='mt-3 btn btn-primary' type="submit" value="Restock" />
-            </form>
+
         </div>
     );
 };

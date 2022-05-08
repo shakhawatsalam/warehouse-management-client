@@ -30,7 +30,7 @@ const AddNewItem = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result);
+
             });
         toast('Your Items is Added')
         event.target.reset('')

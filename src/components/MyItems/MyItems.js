@@ -12,7 +12,6 @@ const MyItems = () => {
 
     useEffect(() => {
         const email = user?.email;
-        console.log(email);
         const url = `http://localhost:5000/myitems?email=${email}`
         try {
             fetch(url, {
@@ -23,7 +22,6 @@ const MyItems = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     if (data?.length) {
                         setItems(data);
                     } else if(data.error) {
@@ -52,7 +50,6 @@ const MyItems = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         const remaning = items?.filter(items => items?._id !== id);
                         setItems(remaning);
                 })

@@ -23,8 +23,7 @@ const Login = () => {
         auth
     );
     let from = location.state?.from?.pathname || "/";
-    console.log(error);
-    console.log(googleuser?.user?.email);
+
     let errorElement;
     if (error) {
         errorElement = <p className='text-danger'>Error : {error?.message} {googlError?.message}</p>
@@ -71,7 +70,6 @@ const Login = () => {
         
     const googleSingin = async () => {
         await signInWithGoogle();
-        console.log(googleuser);
         // const url = `http://localhost:5000/login`;
         
         // fetch(url, {
@@ -91,7 +89,6 @@ const Login = () => {
 
     //forgot password 
     const forgotPassword = async () => {
-        console.log(ResetError);
         if (email) {
             await sendPasswordResetEmail(email);
             toast('Sent email');
